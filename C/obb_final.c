@@ -88,11 +88,11 @@ int main()
         float mat[3][3];
         float E[3][3];
         float inverse_E[3][3];
-        float M[3][3] = {{COV_XX,COV_XY,COV_XZ},{COV_XY,COV_YY,COV_YZ},{COV_XZ,COV_YZ,COV_ZZ}};  //­¡¥N¯x°}(½×¤å¤¤ªº¯S¼x¦V¶qE)
+        float M[3][3] = {{COV_XX,COV_XY,COV_XZ},{COV_XY,COV_YY,COV_YZ},{COV_XZ,COV_YZ,COV_ZZ}};  //è¿­ä»£çŸ©é™£(è«–æ–‡ä¸­çš„ç‰¹å¾µå‘é‡E)
         float I[3][3] = {{100,0,0},{0,100,0},{0,0,100}};
         float II[3][3];
         float D[3][3],R[3][3];
-        printf("§Ú¬OCOV:\n");
+        printf("æˆ‘æ˜¯COV:\n");
         for(x=0;x<3;x++)
         {
             for(y=0;y<3;y++)
@@ -101,7 +101,7 @@ int main()
             }
             printf("\n");
         }
-    for(k=0;k<4;k++) // (n^2-n) / 2 ¦¸
+    for(k=0;k<4;k++) // (n^2-n) / 2 æ¬¡
     {
         det = 0;
         for(x=0;x<3;x++)
@@ -110,7 +110,7 @@ int main()
             {
                 if(x==y)
                 {
-                    D[x][y] = M[x][y];  //D¬°¹ï¨¤½u¯x°} R¬°«D¹ï¨¤½u¯x°}
+                    D[x][y] = M[x][y];  //Dç‚ºå°è§’ç·šçŸ©é™£ Rç‚ºéå°è§’ç·šçŸ©é™£
                     R[x][y] = 0;
                 }
                 else
@@ -122,7 +122,7 @@ int main()
         }
 
 
-        //¨ä¾l³¡¤À§äµ´¹ï­È³Ì¤j­È
+        //å…¶é¤˜éƒ¨åˆ†æ‰¾çµ•å°å€¼æœ€å¤§å€¼
         max = 0;
         for(x=0;x<2;x++)
         {
@@ -140,7 +140,7 @@ int main()
         }
 
     printf("\n");
-    //±ÛÂà¨¤«×
+    //æ—‹è½‰è§’åº¦
     float rotation_angle;
 
         rotation_angle = atan2(2*R[i][j],D[j][j]-D[i][i]);
@@ -158,7 +158,7 @@ int main()
               rotation_angle = rotation_angle *0.5;
         }
 
-        //¬A¸¹¤º¬°©·«×
+        //æ‹¬è™Ÿå…§ç‚ºå¼§åº¦
         for(x=0;x<3;x++)
         {
             for(y=0;y<3;y++)
@@ -166,7 +166,7 @@ int main()
                     E[x][y] = 0;
             }
         }
-        //«Ø¥ß±ÛÂà¯x°}E
+        //å»ºç«‹æ—‹è½‰çŸ©é™£E
             E[i][j] = 100*sin(rotation_angle);
             E[j][i] = 100*(-sin(rotation_angle));
             E[i][i] = 100*cos(rotation_angle);
@@ -174,19 +174,19 @@ int main()
             E[3-i-j][3-i-j] = 100;
             printf("%d %d",i,j);
         printf("\n");
-       printf("²Ä %d ¦¸:",sum);
+       printf("ç¬¬ %d æ¬¡:",sum);
        sum++;
        if(3-i-j==0)
        {
-           printf("ªÅ¶¡Â¶x¶b±ÛÂà:\n\n");
+           printf("ç©ºé–“ç¹xè»¸æ—‹è½‰:\n\n");
        }
        else if (3-i-j==1)
        {
-           printf("ªÅ¶¡Â¶y¶b±ÛÂà:\n\n");
+           printf("ç©ºé–“ç¹yè»¸æ—‹è½‰:\n\n");
        }
        else
        {
-           printf("ªÅ¶¡Â¶z¶b±ÛÂà:\n\n");
+           printf("ç©ºé–“ç¹zè»¸æ—‹è½‰:\n\n");
        }
        for(x=0;x<3;x++)
         {
@@ -197,7 +197,7 @@ int main()
             printf("\n");
         }
 
-        printf("\n¿ïÂà¨¤«×: %.2f  «×\n\n",rotation_angle*180/pi);
+        printf("\né¸è½‰è§’åº¦: %.2f  åº¦\n\n",rotation_angle*180/pi);
 
         for(x=0;x<3;x++)
         {
@@ -207,7 +207,7 @@ int main()
             }
         }
          for(x=0;x<3;x++)
-        //¯x°}¬Û­¼ II = E * I
+        //çŸ©é™£ç›¸ä¹˜ II = E * I
         for (x = 0; x < 3; x++)
         {
             for (y = 0; y < 3; y++)
@@ -225,7 +225,7 @@ int main()
                 I[x][y] = II[x][y]/10;
             }
         }
-        printf("§Ú¬OI:\n");
+        printf("æˆ‘æ˜¯I:\n");
         for(x=0;x<3;x++)
         {
             for(y=0;y<3;y++)
@@ -236,7 +236,7 @@ int main()
         }
         printf("\n");
 
-        // ­pºâÂà¸m¯x°}
+        // è¨ˆç®—è½‰ç½®çŸ©é™£
         for (x = 0; x < 3; x++)
         {
             for (y = 0; y < 3; y++)
@@ -245,8 +245,8 @@ int main()
             }
         }
 
-        //¯x°}¬Û­¼ mat = EÂà¸m * M * E
-        printf("§Ú¬OET:\n");
+        //çŸ©é™£ç›¸ä¹˜ mat = Eè½‰ç½® * M * E
+        printf("æˆ‘æ˜¯ET:\n");
         for(x=0;x<3;x++)
         {
             for(y=0;y<3;y++)
@@ -256,7 +256,7 @@ int main()
             printf("\n");
         }
         printf("\n");
-        printf("§Ú¬OM:\n");
+        printf("æˆ‘æ˜¯M:\n");
         for(x=0;x<3;x++)
         {
             for(y=0;y<3;y++)
@@ -278,7 +278,7 @@ int main()
                 }
             }
         }
-        printf("§Ú¬OET*M:\n");
+        printf("æˆ‘æ˜¯ET*M:\n");
         for(x=0;x<3;x++)
         {
             for(y=0;y<3;y++)
@@ -288,7 +288,7 @@ int main()
             printf("\n");
         }
         printf("\n");
-        //¯x°}¬Û­¼ M = mat * E
+        //çŸ©é™£ç›¸ä¹˜ M = mat * E
 
         for (x = 0; x < 3; x++)
         {
@@ -301,7 +301,7 @@ int main()
                 }
             }
         }
-        printf("§Ú¬OET*M*E:\n");
+        printf("æˆ‘æ˜¯ET*M*E:\n");
         for(x=0;x<3;x++)
         {
             for(y=0;y<3;y++)
@@ -311,7 +311,7 @@ int main()
             printf("\n");
         }
     }
-        printf("\n¯S¼x¦V¶q:\n");
+        printf("\nç‰¹å¾µå‘é‡:\n");
 
         for(x=0;x<3;x++)
         {
@@ -323,7 +323,7 @@ int main()
         }
         printf("\n");
 
-    //Start Projection  (¡Ã£`(#¡Ã)¡¸¢¢¢¡o(¡Ã¥×¡Ã///)
+    //Start Projection  (ï¿£Îµ(#ï¿£)â˜†â•°â•®o(ï¿£çš¿ï¿£///)
     float new_axes[3][3];
 
     printf("Eigenvector\n");
