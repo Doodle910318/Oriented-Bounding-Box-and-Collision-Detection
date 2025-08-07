@@ -115,7 +115,7 @@ always@(posedge clk) begin
         end
     
     4'b1001: begin
-            //µ¹«e­±mux¤@­Óclkªº®É¶¡¿ï¾Ü¿é¤J
+            //çµ¦å‰é¢muxä¸€å€‹clkçš„æ™‚é–“é¸æ“‡è¼¸å…¥
             if(i == 0) i_reg <= i_reg + 1;
             
             else if(i == 1) begin
