@@ -181,7 +181,7 @@ always@(posedge clk) begin
         cc2[3] <= { {20{b5[20]}},b5 };
         cc2[4] <= { {20{b8[20]}},b8 };
         end
-    //µ²ªG 
+    //ÂµÂ²ÂªG 
     else if (cnt2 == 4'b1001) begin
             ctrl_etme <= 1;
             
