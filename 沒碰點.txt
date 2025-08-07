@@ -1,0 +1,110 @@
+`timescale 1ns / 1ps
+`include "./gate_level/gate_collision.v"
+
+module tb_top();
+
+  reg clk;
+  reg rst;
+  reg signed[9:0] data_in_x;
+  reg signed[9:0] data_in_y;
+  reg signed[9:0] data_in_z;
+  wire collision_detect, done_valid;
+  initial $sdf_annotate("./sdf/collision.sdf", collision);
+
+  collision uut (
+           .rst(rst)
+    ,      .clk(clk)
+    ,.data_in_x(data_in_x)
+    ,.data_in_y(data_in_y)
+    ,.data_in_z(data_in_z)
+    ,.collision_detect(collision_detect), .done_valid(done_valid));
+ 
+initial begin
+
+   $fsdbDumpfile("./vcd/collision_gate.fsdb");
+   $fsdbDumpvars;
+   $fsdbDumpMDA;
+   //$dumpfile("./vcd/collision_gate.vcd");
+   //$dumpvars;
+   //$dumpon;
+   
+end
+
+
+
+initial begin
+    clk = 0;
+    rst = 1;
+    #32 rst = 0;
+    data_in_x = 10;
+    data_in_y = 10;
+    data_in_z = 10;    
+
+    #16 data_in_x = 20;
+    data_in_y = 10;
+    data_in_z = 10;
+   
+    #16 data_in_x = 10;
+    data_in_y = 20;
+    data_in_z = 10;
+   
+    #16 data_in_x = 10;
+    data_in_y = 10;
+    data_in_z = 0;
+
+    #16 data_in_x = 20;
+    data_in_y = 20;
+    data_in_z = 10;
+   
+    #16 data_in_x = 20;
+    data_in_y = 10;
+    data_in_z = 0;
+   
+    #16 data_in_x = 10;
+    data_in_y = 20;
+    data_in_z = 0;
+   
+    #16 data_in_x = 20;
+    data_in_y = 20;
+    data_in_z = 0;
+   
+    #16 data_in_x = 100;
+    data_in_y = 100;
+    data_in_z = 100;
+   
+    #16 data_in_x = 100;
+    data_in_y = 200;
+    data_in_z = 100;
+   
+    #16 data_in_x = 200;
+    data_in_y = 100;
+    data_in_z = 100;
+   
+    #16 data_in_x = 100;
+    data_in_y = 100;
+    data_in_z = 200;
+   
+    #16 data_in_x = 200;
+    data_in_y = 200;
+    data_in_z = 100;
+   
+    #16 data_in_x = 100;
+    data_in_y = 200;
+    data_in_z = 200;
+   
+    #16 data_in_x = 200;
+    data_in_y = 100;
+    data_in_z = 200;
+   
+    #16 data_in_x = 200;
+    data_in_y = 200;
+    data_in_z = 200;
+
+    #5000 $finish;
+
+  end
+
+  always #8 clk = ~clk;
+ 
+
+endmodule
